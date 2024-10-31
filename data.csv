@@ -1,0 +1,11 @@
+TID,ITEMS
+T1,"jam,biscuit,milk"
+T2,"choco,butter,jam"
+T3,"jam,milk,juice"
+T4,"choco,butter,juice"
+T5,"biscuit,juice,milk"
+T6,"jam,milk,choco,butter"
+T7,"choco,butter,milk"
+T8,"biscuit,milk"
+T9,"jam,milk,choco,butter"
+T10,"biscuit,juice"
