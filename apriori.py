@@ -27,17 +27,21 @@ for i in range  (1,4):
     frequent_itemsets={itemset: count for itemset, count in item_counts.items() if count >= min_support}
     print(f"Frequent {i}-item sets:", frequent_itemsets)
 
+association_rules=[]
 for itemset in frequent_itemsets:
     for i in range (1,len(itemset)):
-        association_rules=[]
         for antecedent in combinations(itemset,i):
+            antecedent = tuple(sorted(set(antecedent)))
             consequent=tuple(sorted(set(itemset) - set(antecedent)))
-            if consequent:
-                support_antecedent=frequent_itemsets.get(antecedent,0)
-                support_full=frequent_itemsets.get(itemset,0)
-                confidence = support_full / support_antecedent if support_antecedent > 0 else 0
-                if confidence>= min_confidence:
+            support_antecedent=frequent_itemsets.get(antecedent,0)
+            support_full=frequent_itemsets.get(itemset,0)
+            if support_antecedent > 0:
+                confidence=support_full/support_antecedent
+                print(confidence)
+                if confidence>=min_confidence:
                     association_rules.append((antecedent,consequent,confidence))
-        
+           
+
+
 for rule in association_rules:
     print(f"Rule: {rule[0]} -> {rule[1]}, Confidence: {rule[2]:.2f}")
