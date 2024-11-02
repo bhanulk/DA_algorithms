@@ -9,8 +9,8 @@ data_points=df.values
 print(data_points)
 
 def intialize_centroids(data,k):
-    indices = np.random.choice(data.shape[0], k, replace=False)  # Randomly pick k indices
-    return data[indices]  # Select those points as centroids
+    indices = np.random.choice(data.shape[0], k, replace=False) 
+    return data[indices]  
 
 
 def assign_clusters(data,centroids):
