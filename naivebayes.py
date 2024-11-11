@@ -43,9 +43,28 @@ def calculate_likelihood(data):
     return likelihood_prob
 
 
+def classify(prior,likelihood,sample):
+    posterior={}
+    for label in prior:
+        posterior[label]=prior[label]
+        for i in range(len(sample)):
+            if sample[i] in likelihood[label][i]:
+                posterior[label]*=likelihood[label][i][sample[i]]
+            else:
+                posterior[label]*=0
+    for label in posterior:
+        print(f"posterior probabililty of {label}:{posterior[label]}")
+    return max(posterior,key=posterior.get)
 
+def naive_bayes_classifier(data,sample):
+    prior=calculate_priorprobability(data)
+    likelihood=calculate_likelihood(data)
+    return classify(prior,likelihood,sample)
+filename = 'nadat.csv'
+training_data = read_file(filename)
 
-            
-
+new_sample = ['youth', 'medium', 'yes', 'fair'] 
+predicted_class = naive_bayes_classifier(training_data, new_sample) 
+print(f'Predicted class for {new_sample}: {predicted_class}')
 
         
